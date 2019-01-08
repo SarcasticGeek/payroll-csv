@@ -1,0 +1,19 @@
+{
+  "name": "payroll-csv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SarcasticGeek/payroll-csv.git"
+  },
+  "author": "Mohamed Essam <mohamedessamfathalla@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SarcasticGeek/payroll-csv/issues"
+  },
+  "homepage": "https://github.com/SarcasticGeek/payroll-csv#readme"
+}
