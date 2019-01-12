@@ -14,9 +14,9 @@ var payroll = new Payroll(newdate);
  
 program
   .version('0.1.0')
-  .option('-b, --base', 'Base Salary')
-  .option('-o, --bonus', 'Bonus')
-  .option('-a, --all', 'All Saalaries')
+  .option('-b, --base', 'Base Salaries and Export the CSV file in tmp folder')
+  .option('-o, --bonus', 'Bonus Salaries and Export the CSV file in tmp folder')
+  .option('-a, --all', 'All Salaries and Export the CSV file in tmp folder')
   .parse(process.argv);
 
 
