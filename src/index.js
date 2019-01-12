@@ -2,14 +2,19 @@ const moment = require('moment');
 var program = require('commander');
 var fs = require('fs');
 const Json2csvParser = require('json2csv').Parser;
-const fields = ['month', 'salary'];
+const fields = ['Month', 'Salary'];
 const opts = { fields };
+const Company = require('./models/company')
+const Department = require('./models/department')
 
+//Date now
 let newdate = new moment();
 
 const Payroll = require('./models/payroll');
 
-var payroll = new Payroll(newdate);
+var company = new Company('ABC ltd');
+var department = new Department('Sales',company);
+var payroll = new Payroll(newdate,department);
 
  
 program

@@ -1,9 +1,14 @@
 const moment = require('moment');
 
-function Payroll(date) {
+function Payroll(date,department) {
     this.date = date;
+    this.department = department
 }
 // class methods
+Payroll.prototype.getDepartment = function() {
+    return this.department;
+}
+
 Payroll.prototype.getBaseSalaryDate = function(dateInput) {
     let newdate = dateInput.clone().add(1,'months').date(0);
     if(newdate.format('dddd') == "Friday"){
