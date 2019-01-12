@@ -1,12 +1,9 @@
 const moment = require('moment');
 var program = require('commander');
-var fs = require('fs');
-const Json2csvParser = require('json2csv').Parser;
-const fields = ['Month', 'Salary'];
-const opts = { fields };
+
 const Company = require('./models/company')
 const Department = require('./models/department')
-
+var CreateCsv = require('./helpers/createCsv');
 //Date now
 let newdate = new moment();
 
@@ -31,32 +28,27 @@ if(program.base){
     for (const key in baseSalaryMonths) {
         if (baseSalaryMonths.hasOwnProperty(key)) {
             let obj = {
-                "month": key,
-                "salary": "Base Salary in " + baseSalaryMonths[key]
+                "Month": key,
+                "Salary": "Base Salary in " + baseSalaryMonths[key]
             }
             OutPutForCsv.push(obj);            
         }
     }
-    const parser = new Json2csvParser(opts);
-    const csv = parser.parse(OutPutForCsv);
-    fs.writeFileSync('./tmp/baseSalaries.csv',csv);
+    CreateCsv('baseSalaries',OutPutForCsv);
 }
-
 if(program.bonus){
     let bonusMonths = payroll.getBonusSalaryForNext12Months();
     let OutPutForCsv = [];
     for (const key in bonusMonths) {
         if (bonusMonths.hasOwnProperty(key)) {
             let obj = {
-                "month": key,
-                "salary": "Bonus Salary in " + bonusMonths[key]
+                "Month": key,
+                "Salary": "Bonus Salary in " + bonusMonths[key]
             }
             OutPutForCsv.push(obj);            
         }
     }
-    const parser = new Json2csvParser(opts);
-    const csv = parser.parse(OutPutForCsv);
-    fs.writeFileSync('./tmp/bonusSalaries.csv',csv);
+    CreateCsv('bonusSalaries',OutPutForCsv);
 }
 if(program.all){
     let baseSalaryMonths = payroll.getBaseSalaryForNext12Months();
@@ -65,14 +57,11 @@ if(program.all){
     for (const key in baseSalaryMonths) {
         if (baseSalaryMonths.hasOwnProperty(key) && bonusMonths.hasOwnProperty(key)) {
             let obj = {
-                "month": key,
-                "salary": "Base Salary in " + baseSalaryMonths[key] +" & Bonus Salary in "+ bonusMonths[key]
+                "Month": key,
+                "Salary": "Base Salary in " + baseSalaryMonths[key] +" & Bonus Salary in "+ bonusMonths[key]
             }
             OutPutForCsv.push(obj);
         }
     }
-    const parser = new Json2csvParser(opts);
-    const csv = parser.parse(OutPutForCsv);
-    fs.writeFileSync('./tmp/all.csv',csv);
-
+    CreateCsv('all',OutPutForCsv);
 }
